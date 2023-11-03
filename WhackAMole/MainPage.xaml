@@ -2,42 +2,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WhackAMole.MainPage">
-
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Score Board" Clicked="Scoreboard_Clicked"/>
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout>
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
             <Label Text="Top Score: " FontSize="20"/>
-            <Label x:Name="topscorelbl"  HorizontalOptions="Center"/>
+            <Label x:Name="topscorelbl"  HorizontalOptions="Center" FontSize="20"/>
         </HorizontalStackLayout>
-       
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
             <Label Text="Current Score: "/>
             <Label x:Name="currentscore_lbl" Text="0" HorizontalOptions="Center"/>
         </HorizontalStackLayout>
-        
         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
             <Label Text="Timer: "/>
             <Label x:Name="countdown_lbl" Text="30" HorizontalOptions="Center"/>
         </HorizontalStackLayout>
-
-        <Grid x:Name="GridMole3" WidthRequest="300" HeightRequest="300" Background="Blue" IsVisible="True" 
-              IsEnabled="True" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
-            
-            <ImageButton x:Name="mole2" Source="mole2.png" Grid.Row="2" Grid.Column="2"
-                             HorizontalOptions="Center" VerticalOptions="Center"
-                             Clicked="ImageTapped"/>
+        
+        <Grid x:Name="GridMole4" WidthRequest="300" HeightRequest="300" 
+              Background="Blue" IsVisible="True" IsEnabled="True" 
+              RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+            <Image Aspect="AspectFill" Source="background.png" Grid.ColumnSpan="4" Grid.RowSpan="4"/>
+            <Image Scale="0.8" x:Name="mole" Source="mole2.png" Grid.Row="1" Grid.Column="1" 
+                   HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageTapped"/>
+                </Image.GestureRecognizers>
+            </Image>
 
 
         </Grid>
+        <Grid x:Name="GridMole5" WidthRequest="300" HeightRequest="300" 
+              Background="Green" IsVisible="False" IsEnabled="False" 
+              RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*,*">
+            <Image Aspect="AspectFill" Source="background.png" Grid.ColumnSpan="4" Grid.RowSpan="4"/>
+            <Image x:Name="mole5" Source="mole2.png" Grid.Row="1" Grid.Column="1" 
+                   HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ImageTapped"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
 
-        <Grid x:Name="GridMole5" WidthRequest="300" HeightRequest="300" Background="Red" IsVisible="False" 
-              IsEnabled="False" RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*,*"></Grid>
-
-        <Grid>
-            <Button x:Name="Start_Btn" Text="Start" Clicked="Start_Btn_Clicked"/>
+        <Button x:Name="Start_Btn" Text="Start" Clicked="Start_Btn_Clicked"/>
             <Button x:Name="Switch_Grid" Text="Switch Grid"  Clicked="Switch_Grid_Clicked"/>
-
-        </Grid>
+        
     </VerticalStackLayout>
 
 </ContentPage>
